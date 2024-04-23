@@ -1,47 +1,30 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { MoveDirections, usePostsStore, type Post } from './stores/posts'
+import SortablePostList from './components/SortablePostList.vue'
+import ListOfActions from './components/ListOfActions.vue'
+
+const postsStore = usePostsStore()
+
+fetch('https://jsonplaceholder.typicode.com/posts')
+  .then((response) => response.json())
+  .then((posts: Post[]) => postsStore.setPosts(posts))
+
+function handleMove(postId: number, order: number, moveDirection: MoveDirections) {
+  postsStore.appendMove({
+    initialPosition: order,
+    direction: moveDirection,
+    postId
+  })
+}
+
+function handleTimeTravel(moveId: number) {
+  postsStore.jumpToMove(moveId)
+}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <SortablePostList :posts="postsStore.sortedPosts" @move="handleMove" />
+  <ListOfActions :moves="postsStore.moves" @time-travel="handleTimeTravel" />
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+<style scoped></style>
