@@ -66,7 +66,8 @@ describe('Post Store', () => {
   describe(`'appendMove' action`, () => {
     const testMove: RawMove = {
       initialPosition: 0,
-      direction: MoveDirections.Down
+      direction: MoveDirections.Down,
+      postId: 0
     }
 
     test('should push a new move to the moves state', () => {
@@ -93,14 +94,19 @@ describe('Post Store', () => {
     const testMoves: RawMove[] = [
       {
         initialPosition: 0,
+        postId: 0,
         direction: MoveDirections.Down
       },
       {
         initialPosition: 1,
+        postId: 0,
+
         direction: MoveDirections.Down
       },
       {
         initialPosition: 2,
+        postId: 0,
+
         direction: MoveDirections.Down
       }
     ]

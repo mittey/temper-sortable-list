@@ -1,0 +1,23 @@
+@import '@/css/variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+#app {
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+
+  background: linear-gradient(345deg, rgba(244, 244, 244, 1) 97%, $purple-color 97%);
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+}

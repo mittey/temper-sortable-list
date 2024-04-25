@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { MoveDirections, usePostsStore, type Post } from './stores/posts'
-import SortablePostList from './components/SortablePostList.vue'
 import ListOfActions from './components/ListOfActions.vue'
+import SortablePostList from './components/SortablePostList.vue'
+import { MoveDirections, usePostsStore, type Post } from './stores/posts'
 
 const postsStore = usePostsStore()
 
@@ -27,4 +27,4 @@ function handleTimeTravel(moveId: number) {
   <ListOfActions :moves="postsStore.moves" @time-travel="handleTimeTravel" />
 </template>
 
-<style scoped></style>
+<style scoped lang="scss"></style>

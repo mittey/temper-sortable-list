@@ -49,6 +49,7 @@ export const usePostsStore = defineStore('posts', () => {
 
 function applyActions(posts: Post[], actions: SortingMove[]): OrderedPost[] {
   const sortedPosts: OrderedPost[] = posts.map((post, order) => ({ ...post, order }))
+  
   for (const { initialPosition, direction } of actions)
     swap(sortedPosts, initialPosition, initialPosition + mapDirectionToIncrement(direction))
 
