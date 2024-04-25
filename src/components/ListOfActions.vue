@@ -63,8 +63,13 @@ defineEmits<{ timeTravel: [moveOrder: number] }>()
     padding-left: 0;
     min-width: 15.625em;
     padding: 0.9375em;
+    max-height: 75vh;
 
     background-color: $list-container-color;
+
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
 
     .list__item {
       padding: $padding;
@@ -93,6 +98,8 @@ defineEmits<{ timeTravel: [moveOrder: number] }>()
         border: 0;
         border-radius: $border-radius;
         padding: $padding;
+
+        cursor: pointer;
       }
     }
   }

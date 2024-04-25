@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ArrowButton from '@/components/ArrowButton.vue';
-import { MoveDirections, type OrderedPost } from '@/stores/posts';
+import ArrowButton from '@/components/ArrowButton.vue'
+import { MoveDirections, type OrderedPost } from '@/stores/posts'
 
 defineProps<{ posts: OrderedPost[] }>()
 defineEmits<{ move: [postId: number, order: number, direction: MoveDirections] }>()

@@ -7,7 +7,7 @@ const postsStore = usePostsStore()
 
 fetch('https://jsonplaceholder.typicode.com/posts')
   .then((response) => response.json())
-  .then((posts: Post[]) => postsStore.setPosts(posts))
+  .then((posts: Post[]) => postsStore.setPosts(posts.slice(0, 5)))
 
 function handleMove(postId: number, order: number, moveDirection: MoveDirections) {
   postsStore.appendMove({
@@ -23,8 +23,19 @@ function handleTimeTravel(moveId: number) {
 </script>
 
 <template>
-  <SortablePostList :posts="postsStore.sortedPosts" @move="handleMove" />
-  <ListOfActions :moves="postsStore.moves" @time-travel="handleTimeTravel" />
+  <div class="app-container">
+    <SortablePostList :posts="postsStore.sortedPosts" @move="handleMove" />
+    <ListOfActions :moves="postsStore.moves" @time-travel="handleTimeTravel" />
+  </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.app-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+
+  padding: 2em;
+}
+</style>

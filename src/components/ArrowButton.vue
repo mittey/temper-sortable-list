@@ -20,6 +20,8 @@ defineProps<{ direction: 'up' | 'down' }>()
   font-weight: bold;
   padding: 0;
 
+  cursor: pointer;
+
   .button__icon {
     width: 2em;
 
