@@ -7,6 +7,7 @@ const postsStore = usePostsStore()
 
 fetch('https://jsonplaceholder.typicode.com/posts')
   .then((response) => response.json())
+  // Only the first 5 posts should be displayed.
   .then((posts: Post[]) => postsStore.setPosts(posts.slice(0, 5)))
 
 function handleMove(postId: number, order: number, moveDirection: MoveDirections) {

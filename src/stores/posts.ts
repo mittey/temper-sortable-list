@@ -41,7 +41,8 @@ export const usePostsStore = defineStore('posts', () => {
   }
 
   function jumpToMove(actionId: number) {
-    moves.value = moves.value.slice(0, actionId + 1)
+    // This action should also remove the clicked action card and the action cards above that.
+    moves.value = moves.value.slice(0, actionId - (actionId > 0 ? 1 : 0))
   }
 
   return { sortedPosts, moves, setPosts, appendMove, jumpToMove }
@@ -49,7 +50,7 @@ export const usePostsStore = defineStore('posts', () => {
 
 function applyActions(posts: Post[], actions: SortingMove[]): OrderedPost[] {
   const sortedPosts: OrderedPost[] = posts.map((post, order) => ({ ...post, order }))
-  
+
   for (const { initialPosition, direction } of actions)
     swap(sortedPosts, initialPosition, initialPosition + mapDirectionToIncrement(direction))
 
