@@ -116,7 +116,7 @@ describe('Post Store', () => {
       store.setPosts(testPosts)
       for (const move of testMoves) store.appendMove(move)
 
-      store.jumpToMove(0)
+      store.jumpToMove(1)
 
       expect(store.moves.length).toBe(1)
     })
@@ -131,7 +131,7 @@ describe('Post Store', () => {
       expect(store.sortedPosts[2].id).toBe(3)
       expect(store.sortedPosts[3].id).toBe(0)
 
-      store.jumpToMove(0)
+      store.jumpToMove(1)
 
       expect(store.sortedPosts[0].id).toBe(1)
       expect(store.sortedPosts[1].id).toBe(0)

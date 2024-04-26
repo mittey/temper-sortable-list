@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { type SortingMove } from '@/stores/posts'
 import { mapDirectionToIncrement } from '@/stores/posts'
-import { computed } from 'vue'
 
 const { moves } = defineProps<{ moves: SortingMove[] }>()
 defineEmits<{ timeTravel: [moveOrder: number] }>()
