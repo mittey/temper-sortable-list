@@ -42,7 +42,7 @@ export const usePostsStore = defineStore('posts', () => {
 
   function jumpToMove(actionId: number) {
     // This action should also remove the clicked action card and the action cards above that.
-    moves.value = moves.value.slice(0, actionId - (actionId > 0 ? 1 : 0))
+    moves.value = moves.value.slice(0, actionId)
   }
 
   return { sortedPosts, moves, setPosts, appendMove, jumpToMove }

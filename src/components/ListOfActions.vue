@@ -1,24 +1,24 @@
 <script setup lang="ts">
 import { type SortingMove } from '@/stores/posts'
 import { mapDirectionToIncrement } from '@/stores/posts'
+import { computed } from 'vue'
 
-defineProps<{ moves: SortingMove[] }>()
+const { moves } = defineProps<{ moves: SortingMove[] }>()
 defineEmits<{ timeTravel: [moveOrder: number] }>()
 </script>
 
 <template>
   <div class="container">
     <p class="container__header">List of actions committed</p>
-
-    <ul class="container__list" v-if="moves.length > 0">
-      <li class="list__item" v-for="move of moves" :key="move.id">
+    <TransitionGroup v-if="moves.length > 0" name="list" tag="ul" class="container__list">
+      <li class="list__item" v-for="move of moves.slice().reverse()" :key="move.id">
         {{
           `Moved Post ${move.postId} from index ${move.initialPosition} index ${move.initialPosition + mapDirectionToIncrement(move.direction)}`
         }}
 
         <button class="item__button" @click="$emit('timeTravel', move.id)">Time travel</button>
       </li>
-    </ul>
+    </TransitionGroup>
 
     <p class="container__announcement" v-if="moves.length === 0">No actions committed yet</p>
   </div>
@@ -59,6 +59,22 @@ defineEmits<{ timeTravel: [moveOrder: number] }>()
 
   .container__list {
     @include bottom-border-radius;
+
+    .list-move,
+    .list-enter-active,
+    .list-leave-active {
+      transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+    }
+
+    .list-enter-from,
+    .list-leave-to {
+      opacity: 0;
+      transform: scaleY(0.01) translate(30px, 0);
+    }
+
+    .list-leave-active {
+      position: absolute;
+    }
 
     padding-left: 0;
     min-width: 15.625em;
