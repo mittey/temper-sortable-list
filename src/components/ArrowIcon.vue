@@ -11,6 +11,7 @@
 
 <style scoped lang="scss">
 svg {
+  // Set the svg to a purple color.
   filter: invert(28%) sepia(20%) saturate(3862%) hue-rotate(225deg) brightness(88%) contrast(92%);
 }
 </style>
